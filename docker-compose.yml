@@ -1,0 +1,27 @@
+version: '3'
+services:
+  chinadns:
+    build: chinadns/.
+    depends_on:
+      - proxy-dns
+    ports:
+      - "5322:5322/udp"
+      - "5322:5322/tcp"
+    restart: always
+
+  proxy-dns:
+    build: proxy-dns/.
+    ports:
+      - "5311:5311/udp"
+      - "5311:5311/tcp"
+    restart: always
+
+  dnsmasq:
+    build: dnsmasq/.
+    depends_on:
+      - chinadns
+      - proxy-dns
+    ports:
+      - "53:53/udp"
+      - "53:53/tcp"
+    restart: always
