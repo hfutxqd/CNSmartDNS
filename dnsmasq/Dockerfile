@@ -13,6 +13,12 @@ RUN cd /etc/dnsmasq.d && \
     curl -O https://raw.githubusercontent.com/felixonmars/dnsmasq-china-list/master/accelerated-domains.china.conf && \
     rm -rf gfwlist2dnsmasq.sh && \
     echo 'server=127.0.0.1#5322' >> /etc/dnsmasq.conf && \
+    curl https://raw.githubusercontent.com/googlehosts/hosts/master/hosts-files/hosts -o /etc/googlehosts && \
+    echo 'addn-hosts=/etc/googlehosts' > /etc/dnsmasq.d/hosts.conf && \
+    echo 'interface=lo' >> /etc/dnsmasq.conf && \
+    echo 'interface=eth0' >> /etc/dnsmasq.conf && \
+    echo 'interface=docker0' >> /etc/dnsmasq.conf && \
+    echo 'user=root' >> /etc/dnsmasq.conf && \
     echo 'conf-dir=/etc/dnsmasq.d/,*.conf' >> /etc/dnsmasq.conf
 
 EXPOSE 53 53/udp
