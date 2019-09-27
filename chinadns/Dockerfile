@@ -32,4 +32,4 @@ RUN curl http://ftp.apnic.net/apnic/stats/apnic/delegated-apnic-latest \
 
 EXPOSE 5322/tcp 5322/udp
 
-CMD chinadns -m -c /etc/chnroute.txt -p 5322 -s 114.114.114.114,127.0.0.1:5311
+CMD chinadns -m -c /etc/chnroute.txt -p 5322 -s 114.114.114.114,10.5.0.2:5311

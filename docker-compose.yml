@@ -4,17 +4,17 @@ services:
     build: chinadns/.
     depends_on:
       - proxy-dns
-    ports:
-      - "5322:5322/udp"
-      - "5322:5322/tcp"
     restart: always
+    networks:
+      net-cnsmartdns:
+        ipv4_address: 10.5.0.3
 
   proxy-dns:
     build: proxy-dns/.
-    ports:
-      - "5311:5311/udp"
-      - "5311:5311/tcp"
     restart: always
+    networks:
+      net-cnsmartdns:
+        ipv4_address: 10.5.0.2
 
   dnsmasq:
     build: dnsmasq/.
@@ -25,3 +25,12 @@ services:
       - "53:53/udp"
       - "53:53/tcp"
     restart: always
+    networks:
+      net-cnsmartdns:
+        ipv4_address: 10.5.0.1
+networks:
+  net-cnsmartdns:
+    driver: bridge
+    ipam:
+     config:
+       - subnet: 10.5.0.0/16

@@ -12,7 +12,7 @@ RUN cd /etc/dnsmasq.d && \
     bash gfwlist2dnsmasq.sh -p 5311 -o gfwlist2dnsmasq.conf && \
     curl -O https://raw.githubusercontent.com/felixonmars/dnsmasq-china-list/master/accelerated-domains.china.conf && \
     rm -rf gfwlist2dnsmasq.sh && \
-    echo 'server=127.0.0.1#5322' >> /etc/dnsmasq.conf && \
+    echo 'server=10.5.0.3#5322' >> /etc/dnsmasq.conf && \
     curl https://raw.githubusercontent.com/googlehosts/hosts/master/hosts-files/hosts -o /etc/googlehosts && \
     echo 'addn-hosts=/etc/googlehosts' > /etc/dnsmasq.d/hosts.conf && \
     echo 'interface=lo' >> /etc/dnsmasq.conf && \
